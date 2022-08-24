@@ -1,0 +1,34 @@
+pipeline {
+    agent {
+        label 'main'
+    }
+
+    stages {
+        stage('Build Docker Image') {
+            steps {
+                echo 'Building docker image'
+                dir('apis/userprofile/') {
+                	sh 'pwd'
+                	sh 'sudo docker build -t willido/userprofile:2.0 .'
+		}
+            }
+        }
+        stage('test') {
+            steps {
+		 dir('apis/userprofile/'){
+                    sh 'npm test'
+                 }
+                }
+            }
+        }
+        stage('cover') {
+            steps {
+		 dir('apis/userprofile/'){
+                    sh 'npm run cover'
+                 }
+                }
+            }
+        }     
+
+    }
+}
