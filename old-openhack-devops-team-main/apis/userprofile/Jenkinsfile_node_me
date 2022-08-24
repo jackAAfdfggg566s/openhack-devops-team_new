@@ -19,7 +19,7 @@ pipeline {
                     sh 'npm test'
                  }
                 }
-            }
+            
         }
         stage('cover') {
             steps {
@@ -28,7 +28,7 @@ pipeline {
                  }
                 }
             }
-        }     
+             
 
     }
 }
