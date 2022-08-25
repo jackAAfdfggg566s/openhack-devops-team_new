@@ -3,7 +3,6 @@ pipeline {
         label 'Node2'
         docker {
             image 'cf11/userprofile:2.0'
-            //args '-p 3000:3000 -p 5000:5000' 
         }
     }
 
