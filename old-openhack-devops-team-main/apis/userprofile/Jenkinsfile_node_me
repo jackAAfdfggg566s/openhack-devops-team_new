@@ -1,7 +1,6 @@
 pipeline {
     agent {
         docker {
-            label 'Node2'
             image 'cf11/userprofile:2.0'
         }
     }
