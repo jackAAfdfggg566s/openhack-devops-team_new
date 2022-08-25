@@ -1,6 +1,10 @@
 pipeline {
     agent {
         label 'Node2'
+        docker {
+            image 'cf11/userprofile:2.0'
+            //args '-p 3000:3000 -p 5000:5000' 
+        }
     }
 
     stages {
@@ -9,7 +13,7 @@ pipeline {
                 echo 'Building docker image'
                 dir('old-openhack-devops-team-main/apis/userprofile/') {
                 	sh 'pwd'
-                	sh 'sudo docker build -t willido/userprofile:2.0 .'
+                	sh 'sudo docker build -t cf11/userprofile:2.0 .'
 		}
             }
         }
