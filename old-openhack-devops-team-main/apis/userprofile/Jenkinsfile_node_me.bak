@@ -1,43 +1,31 @@
-
-
 pipeline {
     agent {
-	 label 'Node2'
-       
-    }
+       label 'Node2' 
+   }
 
     stages {
         stage('Build Docker Image') {
             steps {
                 echo 'Building docker image'
                 dir('old-openhack-devops-team-main/apis/userprofile/') {
-                        sh 'pwd'
-                        sh 'sudo docker build -t cf11/userprofile:2.0 .'
-                }
+                	sh 'pwd'
+                	sh 'sudo docker build -t cf11/userprofile:2.0 .'
+		}
             }
         }
         stage('test') {
             steps {
-			     agent {
-                   docker {
-                    image 'cf11/userprofile:2.0'
+		 dir('old-openhack-devops-team-main/apis/userprofile/'){
                     sh 'npm test'
-                    reuseNode true
-                   }
-            } 
+                 }
                 }
             
         }
-		
         stage('cover') {
             steps {
-                 
-				 agent {
-                   docker {
-                    image 'cf11/userprofile:2.0'
+		 dir('old-openhack-devops-team-main/apis/userprofile/'){
                     sh 'npm run cover'
-                    reuseNode true
-                   }
+                 }
                 }
             }
              
