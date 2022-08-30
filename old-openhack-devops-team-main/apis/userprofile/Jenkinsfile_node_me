@@ -22,7 +22,6 @@ pipeline {
                    docker {
                     image 'cf11/userprofile:2.0'
                     sh 'npm test'
-                    reuseNode true
                    }
             } 
                 }
@@ -36,7 +35,6 @@ pipeline {
                    docker {
                     image 'cf11/userprofile:2.0'
                     sh 'npm run cover'
-                    reuseNode true
                    }
                 }
             }
