@@ -16,6 +16,17 @@ pipeline {
                 }
             }
         }
+
+       stage('run Docker ') {
+            steps {
+                echo 'run docker '
+                dir('old-openhack-devops-team-main/apis/userprofile/') {
+                        sh 'pwd'
+                        sh 'sudo docker run -name new_profile11 cf11/userprofile:2.0 .'
+                }
+            }
+        }
+
         stage('test') {
             steps {
 			     agent {
