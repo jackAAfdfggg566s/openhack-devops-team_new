@@ -22,7 +22,7 @@ pipeline {
                 echo 'run docker '
                 dir('old-openhack-devops-team-main/apis/userprofile/') {
                         sh 'pwd'
-                        sh 'sudo docker run --name new_profile11 cf11/userprofile:2.0 .'
+                        sh 'sudo docker run --name new_profile12 cf11/userprofile:2.0'
                 }
             }
         }
