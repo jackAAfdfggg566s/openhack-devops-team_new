@@ -1,5 +1,4 @@
 
-
 pipeline {
     agent {
          label 'Node2'
@@ -19,24 +18,26 @@ pipeline {
 
       
 
-		
-		
-		  stage('test') {
+
+
+                  stage('test') {
             agent {
                 docker { image 'cf11/userprofile:2.0' }
             }
             steps {
+			 dir('/app')
                 sh 'npm test'
             }
         }
-		
+
 
        
-	     stage('cover') {
+             stage('cover') {
             agent {
                 docker { image 'cf11/userprofile:2.0' }
             }
             steps {
+			 dir('/app')
                 sh 'npm run cover'
             }
         }
