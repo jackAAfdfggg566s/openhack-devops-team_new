@@ -16,8 +16,15 @@ pipeline {
             }
         }
 
-      
-
+       stage('test entrypoint') {
+		 agent {
+                docker { image 'cf11/userprofile:2.0' }
+            }
+				dockerImage.inside("--entrypoint=''") {
+     echo "Tests passed"
+}
+            }
+			}
 
 
                   stage('test') {
@@ -25,11 +32,11 @@ pipeline {
                 docker { image 'cf11/userprofile:2.0' }
             }
             steps {
-			 dir('/app')
+			 dir('old-openhack-devops-team-main/apis/userprofile/')
 			 {
                 sh 'npm test'
 				}
-            }
+		
         }
 
 
@@ -39,7 +46,7 @@ pipeline {
                 docker { image 'cf11/userprofile:2.0' }
             }
             steps {
-			 dir('/app')
+			 dir('old-openhack-devops-team-main/apis/userprofile/')
 			 {
                 sh 'npm run cover'
 				}
