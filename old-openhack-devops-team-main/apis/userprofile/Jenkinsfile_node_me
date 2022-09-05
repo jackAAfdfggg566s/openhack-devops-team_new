@@ -19,14 +19,6 @@ pipeline {
         }
 
       
-     stage('test entrypoint') {
-		 agent {
-                docker { image 'cf11/userprofile:2.0' }
-            }
-				dockerImage.inside("--entrypoint=''") {
-     echo "Tests passed"
-}
-            }
 
 
                   stage('test') {
